@@ -32,7 +32,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (res.status === 400) {
       return {
         redirect: {
-          destination: "/",
+          destination: `/404`,
         },
       };
     }
