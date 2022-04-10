@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down",
     "vercel-build": "prisma:generate && next build",
     "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE=\"dataproxy\" prisma generate"
   },
