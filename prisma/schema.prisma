@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model adress {
+model address {
   cep String @id @unique
   logradouro String
   complemento String?

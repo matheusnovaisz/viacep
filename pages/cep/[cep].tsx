@@ -1,3 +1,4 @@
+import { address } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 import CepInfo from "../../components/CepInfo";
 import SearchCep from "../../components/SearchCep";
@@ -16,17 +17,20 @@ export default function cep({ data }) {
   );
 }
 
+type CEPConsulta = address & { erro?: boolean };
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { cep } = context.params;
   const cepFormat =
     cep.length === 8 ? cep.slice(0, -3) + "-" + cep.slice(-3) : cep;
-  let adress = await prisma.adress.findUnique({
+  let address: CEPConsulta;
+  address = await prisma.address.findUnique({
     where: {
       cep: String(cepFormat),
     },
   });
 
-  if (!adress) {
+  if (!address) {
     const res = await fetch(`https://viacep.com.br/ws/${cep}/json/
     `);
     if (res.status === 400) {
@@ -36,16 +40,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
       };
     }
-    adress = await res.json();
-    if (!adress.erro) {
-      await prisma.adress.create({
-        data: adress,
+    address = await res.json();
+    if (!address.erro) {
+      await prisma.address.create({
+        data: address,
       });
     }
   }
   return {
     props: {
-      data: adress,
+      data: address,
     },
   };
 }
