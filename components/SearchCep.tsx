@@ -8,7 +8,6 @@ export default function SearchCep() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log(cep);
     router.push(`/cep/${cep}`);
   }
   return (

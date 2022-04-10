@@ -1,0 +1,28 @@
+.form {
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form input {
+  border: 0;
+  box-shadow: 0 0 0.2em black;
+  border-radius: 15px;
+  padding: 5px;
+  appearance: textfield;
+}
+
+.form input[type="number"]::-webkit-inner-spin-button,
+.form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form button {
+  background-color: #009712;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 0;
+}
